@@ -14,7 +14,7 @@ public class SOLRWriter {
     private CloudSolrServer solr;
 
     public void open() throws IOException {
-        solr = new CloudSolrServer("localhost:9983");
+        solr = new CloudSolrServer("localhost:8983");
         solr.setDefaultCollection("collection1");
     }
 
