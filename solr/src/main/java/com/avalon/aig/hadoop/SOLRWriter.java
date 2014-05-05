@@ -14,15 +14,15 @@ public class SOLRWriter {
     private CloudSolrServer solr;
 
     public void open() throws IOException {
-        solr = new CloudSolrServer("localhost:8983");
+        solr = new CloudSolrServer("localhost:2181");
         solr.setDefaultCollection("collection1");
     }
 
     SolrInputDocument convertToSOLR(Note note) {
         final SolrInputDocument inputDoc = new SolrInputDocument();
         inputDoc.addField("id", note.getID());
-        inputDoc.addField("facets", note.getFacets());
-        inputDoc.addField("text", note.getText());
+        inputDoc.addField("type", note.getType());
+        inputDoc.addField("note", note.getText());
 
         inputDoc.setDocumentBoost(1.0f);
         return inputDoc;

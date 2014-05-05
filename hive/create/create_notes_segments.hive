@@ -1,0 +1,7 @@
+CREATE EXTERNAL TABLE notes_segments(
+    id string,
+    note_id string,
+    note_segment_text string)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY '|'
+STORED AS TEXTFILE
+LOCATION '/tmp/aig/notes_segments';

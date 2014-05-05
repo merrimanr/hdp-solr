@@ -1,0 +1,7 @@
+CREATE TABLE index_record(
+    title string,
+    type string,
+    id string,
+    text string)
+ROW FORMAT DELIMITED
+STORED AS TEXTFILE;

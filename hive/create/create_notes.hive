@@ -1,0 +1,6 @@
+CREATE EXTERNAL TABLE notes(
+    id string,
+    title string)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY '|'
+STORED AS TEXTFILE
+LOCATION '/tmp/aig/notes';

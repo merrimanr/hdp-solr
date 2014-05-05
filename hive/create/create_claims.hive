@@ -1,0 +1,6 @@
+CREATE EXTERNAL TABLE claims(
+    id string,
+    type string)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY '|'
+STORED AS TEXTFILE
+LOCATION '/tmp/aig/claims';

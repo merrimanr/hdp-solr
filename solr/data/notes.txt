@@ -1,0 +1,4 @@
+1|car claim 1
+2|car claim 2
+3|property claim 1
+4|injury claim 1

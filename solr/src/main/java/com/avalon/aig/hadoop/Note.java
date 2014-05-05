@@ -1,9 +1,6 @@
 package com.avalon.aig.hadoop;
 
-import org.apache.hadoop.io.ArrayWritable;
-import org.apache.hadoop.io.Text;
-import org.apache.hadoop.io.Writable;
-import org.apache.hadoop.io.WritableComparable;
+import org.apache.hadoop.io.*;
 
 import java.io.DataInput;
 import java.io.DataOutput;
@@ -17,14 +14,22 @@ import java.util.List;
 public class Note implements WritableComparable<Note> {
 
     private final Text id = new Text();
-    private final ArrayWritable facets = new ArrayWritable(Text.class);
+    private final Text type = new Text();
     private final Text text = new Text();
 
-    public Note(String id, List<String> facets, String text) {
+  public Note() {
+
+  }
+
+    public Note(String id, String type, String text) {
         setID(id);
-        setFacets(facets);
+        setType(type);
         setText(text);
     }
+
+
+
+
 
     void setID(String id) {
         this.id.set(id);
@@ -34,24 +39,13 @@ public class Note implements WritableComparable<Note> {
         return this.id.toString();
     }
 
-    void setFacets(List<String> facets) {
-        int numFacets = facets.size();
-        Writable[] facetsWritable = new Text[numFacets];
-        for (int i = 0; i < numFacets; i++) {
-            facetsWritable[i] = new Text(facets.get(i));
-        }
-        this.facets.set(facetsWritable);
+    void setType(String type) {
+        this.type.set(type);
     }
 
-    public List<String> getFacets() {
-        ArrayList<String> output = new ArrayList<String>();
-        if (facets.get() == null) {
-            return output;
-        }
-        for (Writable w : this.facets.get()) {
-            output.add(w.toString());
-        }
-        return output;
+    public String getType() {
+
+        return this.type.toString();
     }
 
     void setText(String text) {
@@ -65,7 +59,7 @@ public class Note implements WritableComparable<Note> {
     @Override
     public String toString() {
         StringBuilder row = new StringBuilder();
-        row.append(getFacets()).append("|");
+        row.append(getType()).append("|");
         row.append(getText());
         return row.toString();
     }
@@ -78,14 +72,14 @@ public class Note implements WritableComparable<Note> {
     @Override
     public void write(DataOutput dataOutput) throws IOException {
         id.write(dataOutput);
-        facets.write(dataOutput);
+        type.write(dataOutput);
         text.write(dataOutput);
     }
 
     @Override
     public void readFields(DataInput dataInput) throws IOException {
         id.readFields(dataInput);
-        facets.readFields(dataInput);
+        type.readFields(dataInput);
         text.readFields(dataInput);
     }
 }

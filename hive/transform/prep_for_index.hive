@@ -1,0 +1,9 @@
+insert into table index_record
+select title, type, notes_full_id, text
+from
+(select max(note_id) as notes_full_id, concat_ws(' ', collect_set(note_segment_text)) as text
+from notes_segments group by note_id) notes_full
+join notes
+on notes.id = notes_full.notes_full_id
+join claims
+on claims.id = notes.id

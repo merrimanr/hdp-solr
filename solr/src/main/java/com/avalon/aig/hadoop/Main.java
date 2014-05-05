@@ -13,12 +13,10 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) throws IOException, SolrServerException {
         SOLRWriter writer = new SOLRWriter();
-        String id = "id1";
-        ArrayList<String> facets = new ArrayList<String>();
-        facets.add("facet1");
-        facets.add("facet2");
-        String text = "text1";
-        Note note = new Note(id, facets, text);
+        String id = "id2";
+        String type = "type2";
+        String text = "text2";
+        Note note = new Note(id, type, text);
         try {
             writer.open();
             writer.write(note);

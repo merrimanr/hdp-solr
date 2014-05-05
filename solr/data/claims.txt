@@ -1,0 +1,4 @@
+1|auto
+2|auto
+3|property
+4|injury
