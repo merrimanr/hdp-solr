@@ -1,11 +1,8 @@
-package com.avalon.aig.hadoop;
+package com.aig.hadoop;
 
 import org.apache.solr.client.solrj.SolrServerException;
-import org.apache.solr.client.solrj.impl.CloudSolrServer;
-import org.apache.solr.common.SolrInputDocument;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 /**
  * Created by mannd on 5/1/14.

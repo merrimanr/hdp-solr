@@ -1,12 +1,10 @@
-package com.avalon.aig.hadoop;
+package com.aig.hadoop;
 
 import org.apache.hadoop.io.*;
 
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by mannd on 5/1/14.
