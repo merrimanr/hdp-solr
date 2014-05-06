@@ -75,34 +75,19 @@ public class HCatIndexTool extends Configured implements Tool {
     Configuration conf = getConf();
     args = new GenericOptionsParser(conf, args).getRemainingArgs();
 
-    String inputTableName = "index_record";
-    String dbName = "default";
+
 
     Job job = new Job(conf, "HCatIndexTool");
-    HCatInputFormat.setInput(job, dbName, inputTableName);
+    String inputTableName = "index_record";
+    String dbName = "default";
     // initialize HCatOutputFormat
-
+    HCatInputFormat.setInput(job, dbName, inputTableName);
     job.setInputFormatClass(HCatInputFormat.class);
     job.setJarByClass(HCatIndexTool.class);
     job.setMapperClass(Map.class);
     job.setNumReduceTasks(0);
-    //job.setReducerClass(Reduce.class);
-    //job.setMapOutputKeyClass(NullWritable.class);
-    //job.setMapOutputValueClass(Note.class);
     job.setOutputKeyClass(NullWritable.class);
     job.setOutputValueClass(Note.class);
-    //job.setOutputValueClass(Text.class);
-    //HCatOutputFormat.setOutput(job, OutputJobInfo.create(dbName,
-    //        outputTableName, null));
-    //HCatSchema s = HCatOutputFormat.getTableSchema(conf);
-
-    //System.err.println("INFO: output schema explicitly set for writing:"
-    //        + s);
-    //HCatOutputFormat.setSchema(conf, s);
-    //job.setOutputFormatClass(HCatOutputFormat.class);
-    //TextOutputFormat.setOutputPath(job, new Path("/tmp/results"));
-    //job.setOutputFormatClass(TextOutputFormat.class);
-    //SOLROutputFormat.setOutputPath(job, new Path("/tmp/results"));
     job.setOutputFormatClass(SOLROutputFormat.class);
     return (job.waitForCompletion(true) ? 0 : 1);
   }

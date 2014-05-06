@@ -93,7 +93,7 @@ public class HBaseTool extends Configured implements Tool {
     String inputTableName = "index_record";
     String dbName = "default";
 
-    Job job = new Job(conf, "HCatIndexTool");
+    Job job = new Job(conf, "HBaseTool");
     //HCatInputFormat.setInput(job, dbName, inputTableName);
     // initialize HCatOutputFormat
 
@@ -108,7 +108,7 @@ public class HBaseTool extends Configured implements Tool {
     //job.setMapOutputValueClass(Note.class);
     job.setOutputKeyClass(ImmutableBytesWritable.class);
     job.setOutputValueClass(Put.class);
-   
+
     TableMapReduceUtil.initTableReducerJob(
             "index",      // output table
             null,             // reducer class
